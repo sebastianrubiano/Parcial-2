@@ -7,14 +7,19 @@ using namespace std;
 class Tablero
 {
 private:
-    int tamano = 8;
-    char tablero[24][24];
+    int tamano;
+    char** tablero;
     void tablero_inicial();
 
+
 public:
-    Tablero(int tan);
+    Tablero(int tam);
     void Mostrar_tablero();
     bool movi_valido(int fila, int columnas, char jugador);
+    void hacerMovimiento(int fila, int columna, char jugador);
+    bool tieneMovimientosValidos(char jugador);
+    int contarFichas(char jugador);
+
 };
 
 #endif // TABLERO_H
