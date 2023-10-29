@@ -1,0 +1,12 @@
+2023/10/27 11:03:48 juan 8 sebastian 28 sebastian
+2023/10/25 14:30:48 Jugador1 10 Oponente1 8 Jugador1
+2023/10/26 15:45:48 Jugador2 12 Oponente2 15 Oponente2
+2023/10/27 16:00:48 Jugador3 8 Oponente3 10 Oponente3
+2023/10/28 17:15:48 Jugador4 11 Oponente4 9 Jugador4
+2023/10/29 18:30:48 Jugador5 6 Oponente5 11 Oponente5
+2023/10/30 19:45:48 Jugador6 14 Oponente6 7 Jugador6
+2023/10/31 20:00:48 Jugador7 9 Oponente7 9 Empate
+2023/11/01 21:15:48 Jugador8 12 Oponente8 15 Oponente8
+2023/11/02 22:30:48 Jugador9 7 Oponente9 12 Oponente9
+2023/11/03 23:45:48 Jugador10 8 Oponente10 10 Jugador10
+2023/10/27 14:56:44 felipe 3 luis 13 luis
