@@ -7,13 +7,17 @@ void Tablero::tablero_inicial()
             tablero[i][j] = ' ';
         }
     }
-    tablero[(tamano/2)-1][(tamano/2)-1] = tablero[tamano/2][tamano/2] = '*';//jugador uno blanco
-    tablero[(tamano/2)-1][tamano/2] = tablero[tamano/2][(tamano/2)-1] = '-';//jugador dos negro
+    tablero[(tamano/2)-1][(tamano/2)-1] = tablero[tamano/2][tamano/2] = '*';   //  fichaA;         //jugador uno blanco
+    tablero[(tamano/2)-1][tamano/2] = tablero[tamano/2][(tamano/2)-1] = '-';   //  fichaB;         //jugador dos negro
 }
 
-Tablero::Tablero(int tam)
+Tablero::Tablero(int tam)//,char A,char B)
 {
      tamano = tam;
+     /*
+    fichaA = A;
+    fichaB = B;
+    */
 
     tablero = new char*[tamano];
     for (int i = 0; i < tamano; i++) {
@@ -66,7 +70,7 @@ bool Tablero::movi_valido(int filas, int columnas, char jugador)
    {
        return false;
    }
-    char enemigo = (jugador == '*') ? '-' : '*'; //  'X') ? '0' : 'X';
+    char enemigo = (jugador == '*') ? '-' : '*'; //  fichaA) ? fichaB : fichaA;
     int df[ ] = {-1, -1, -1, 0, 1, 1, 1, 0};
     int dc[ ] = {-1, 0, 1, 1, 1, 0, -1, -1};
 
@@ -90,7 +94,7 @@ bool Tablero::movi_valido(int filas, int columnas, char jugador)
 }
 
 void Tablero::hacerMovimiento(int J_fila, int J_columna, char jugador) {
-    char oponente = (jugador == '*') ? '-' : '*'; //  'X') ? '0' : 'X';
+    char oponente = (jugador == '*') ? '-' : '*';  //  fichaA) ? fichaB : fichaA;
     tablero[J_fila][J_columna] = jugador;
 
     int df[] = {-1, -1, -1, 0, 1, 1, 1, 0};

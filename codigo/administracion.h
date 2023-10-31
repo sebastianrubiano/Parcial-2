@@ -14,6 +14,7 @@ public:
     void leer_archivo();
     void guardar_archivo(Jugador* jugador, Jugador* oponente);
     void juego();
+    void intrucciones();
 };
 
 #endif // ADMINISTRACION_H

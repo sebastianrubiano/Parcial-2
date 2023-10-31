@@ -36,15 +36,23 @@ void administracion::guardar_archivo(Jugador* jugador, Jugador* oponente)
 
 void administracion::juego() {
     string J1, J2;
+    // char  fichaA, fichaB;
     int tam = 8;
 
     cout<< "tamano del tablero: ";
     cin >> tam;
+    /*
     if (tam < 4 || tam%2 !=0)
     {
         cout << "El tamano del tablero debe ser al menos 4. Saliendo del programa." << endl;
         return ;
     }
+    cout << "ficha del jugador_!: ";
+    cin >> fichaA;
+
+    cout << "ficha del jugador_2: ";
+    cin >> fichaB;
+    */
 
     cout << "nombre del jugador1: ";
     cin >> J1;
@@ -52,9 +60,9 @@ void administracion::juego() {
     cout << "nombre del jugador2: ";
     cin >> J2;
 
-    Tablero* TAB = new Tablero(tam);
-    Jugador* jugador1 = new Jugador('*', J1);
-    Jugador* oponente = new Jugador('-', J2);
+    Tablero* TAB = new Tablero(tam);// fichaA, fichaB);
+    Jugador* jugador1 = new Jugador('*', J1); //(fichaA, J1);
+    Jugador* oponente = new Jugador('-', J2); //(fichaB, J2);
 
     Jugador* jugadorActual = jugador1;
 
@@ -120,8 +128,20 @@ void administracion::juego() {
        jugadorActual = (jugadorActual == jugador1) ? oponente : jugador1;
     }
     guardar_archivo(jugador1, oponente);
-    return;
 
+}
+
+void administracion::intrucciones()
+{
+    cout << "Instrucciones para jugar Othello:\n" << endl;
+    cout << "1. El juego comienza con cuatro fichas en el centro del tablero: dos blancas y dos negras." << endl;
+    cout << "2. Los jugadores se turnan para colocar sus fichas en el tablero." << endl;
+    cout << "3. Debes colocar una ficha en una casilla vacía de modo que encierres" << endl;
+    cout << " una o más fichas del oponente entre tu nueva ficha y tus fichas ya colocadas." << endl;
+    cout << "Las fichas atrapadas entre las fichas del jugador y las fichas del oponente se voltearán y cambiarán de color." << endl;
+    cout << "5. El objetivo es tener más fichas de tu color que el oponente al final del juego." << endl;
+    cout << "6. El juego termina cuando no se pueden hacer más movimientos válidos." << endl;
+    cout << "7. Gana el jugador con más fichas de su color en el tablero." << endl;
 }
 
 void administracion::leer_archivo()
@@ -146,7 +166,8 @@ void administracion::leer_archivo()
        cout << left << setw(tan_col) << fecha << setw(tan_col) << hora
             << setw(tan_col) << jugador << setw(tan_col) << ju_puntos
             << setw(tan_col) << oponente << setw(tan_col) << op_puntos
-            << setw(tan_col) << ganador << endl;
+            << setw(tan_col) << ganador <<  endl;
     }
+    cout  <<  endl;
     archivo.close();
 }

@@ -10,10 +10,10 @@ private:
     int tamano;
     char** tablero;
     void tablero_inicial();
-
+    //char fichasA,fichaB;
 
 public:
-    Tablero(int tam);
+    Tablero(int tam);//,char A,char B);
     void Mostrar_tablero();
     bool movi_valido(int fila, int columnas, char jugador);
     void hacerMovimiento(int fila, int columna, char jugador);
