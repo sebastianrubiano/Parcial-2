@@ -13,3 +13,6 @@ HEADERS += \
     administracion.h \
     jugador.h \
     tablero.h
+
+DISTFILES += \
+    build-Othello-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/registros.txt

@@ -36,12 +36,15 @@ void administracion::guardar_archivo(Jugador* jugador, Jugador* oponente)
 
 void administracion::juego() {
     string J1, J2;
-    int tam = 4;/*
+    int tam = 8;
+
     cout<< "tamano del tablero: ";
     cin >> tam;
-    if (tam < 4 || mod(tamano) !=0) {
+    if (tam < 4 || tam%2 !=0)
+    {
         cout << "El tamano del tablero debe ser al menos 4. Saliendo del programa." << endl;
-        return ;*/
+        return ;
+    }
 
     cout << "nombre del jugador1: ";
     cin >> J1;
@@ -117,9 +120,6 @@ void administracion::juego() {
        jugadorActual = (jugadorActual == jugador1) ? oponente : jugador1;
     }
     guardar_archivo(jugador1, oponente);
-    delete jugador1;
-    delete oponente;
-    delete jugadorActual;
     return;
 
 }

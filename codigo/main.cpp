@@ -6,8 +6,8 @@ using namespace std;
 
 int main(){
     string archivo;
-    cout << "nombre del archivo: ";
-    cin >> archivo;
+    //cout << "nombre del archivo: ";
+    //cin >> archivo;
     archivo = "registros";
     administracion* admin = new administracion(archivo);
     int opciones = 0;
