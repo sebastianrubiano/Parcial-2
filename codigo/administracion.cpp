@@ -36,13 +36,13 @@ void administracion::guardar_archivo(Jugador* jugador, Jugador* oponente)
 
 void administracion::juego() {
     string J1, J2;
-    // char  fichaA, fichaB;
+    char  fichaA, fichaB;
     int tam = 8;
-
+/*
     cout<< "tamano del tablero: ";
     cin >> tam;
-    /*
-    if (tam < 4 || tam%2 !=0)
+
+    if (tam < 4 && tam > 26 && tam%2 !=0)
     {
         cout << "El tamano del tablero debe ser al menos 4. Saliendo del programa." << endl;
         return ;
@@ -52,19 +52,22 @@ void administracion::juego() {
 
     cout << "ficha del jugador_2: ";
     cin >> fichaB;
-    */
+*/
+    fichaA= '*';//BLANO *
+    fichaB= '-'; // NEGRO -
 
-    cout << "nombre del jugador1: ";
+    cout << "nombre del Jugador@ de las fichas blancas: ";
     cin >> J1;
 
-    cout << "nombre del jugador2: ";
+
+    cout << "nombre del Jugador@ de las fichas negras: ";
     cin >> J2;
 
-    Tablero* TAB = new Tablero(tam);// fichaA, fichaB);
-    Jugador* jugador1 = new Jugador('*', J1); //(fichaA, J1);
-    Jugador* oponente = new Jugador('-', J2); //(fichaB, J2);
+    Tablero* TAB = new Tablero(tam, fichaA, fichaB);
+    Jugador* jugador1 = new Jugador(fichaA, J1);
+    Jugador* oponente = new Jugador(fichaB, J2);
 
-    Jugador* jugadorActual = jugador1;
+    Jugador* jugadorActual = oponente;
 
     while (true)
     {
@@ -83,10 +86,29 @@ void administracion::juego() {
        }
        else
        {
-            cout << endl; //system("cls");
-           cout << "El jugador " << jugador1->nombre << " (*) , puntos: " << jugador1->puntos << endl;
-           cout << "El jugador " << oponente->nombre << " (-) , puntos: " << oponente->puntos << endl;
-           TAB->Mostrar_tablero();
+           cout << endl; //system("cls");
+           cout << "Jugador@ ";
+           SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
+           cout << jugador1->nombre;
+           SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+           cout << " (";
+           SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
+           cout << jugador1->ficha;
+           SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+           cout << ") , puntos: ";
+           cout << jugador1->puntos << endl;
+           cout << "Jugador@ ";
+           SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE);
+           cout << oponente->nombre;
+           SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+           cout << " (";
+           SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE);
+           cout << oponente->ficha;
+           SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+           cout << ") , puntos: ";
+           cout << oponente->puntos << endl << endl;
+           TAB->Mostrar_tablerocolor();
+           cout  << endl;
            jugador1->ganador = true;
            oponente->ganador = true;
            jugadorActual->movimiento(TAB);
@@ -100,25 +122,60 @@ void administracion::juego() {
        {
            cout << endl;//system("cls");
 
-           cout << "El jugador " << jugador1->nombre << " (*) tiene " << jugador1->puntos << " puntos." << endl;
-           cout << "El jugador " << oponente->nombre << " (-) tiene " << oponente->puntos << " puntos." << endl;
-           TAB->Mostrar_tablero();
-
+           SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
+           cout << jugador1->nombre;
+           SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+           cout << " (";
+           SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
+           cout << jugador1->ficha;
+           SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+           cout << ") , puntos: ";
+           cout << jugador1->puntos << endl;
+           cout << "Jugador@ ";
+           SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE);
+           cout << oponente->nombre;
+           SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+           cout << " (";
+           SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE);
+           cout << oponente->ficha;
+           SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+           cout << ") , puntos: ";
+           cout << oponente->puntos << endl << endl;
+           TAB->Mostrar_tablerocolor();
+           cout  << endl;
            if (jugador1->puntos > oponente->puntos)
            {
-               cout << "El jugador " << jugador1->nombre << " (*) gana." << endl;
+               cout << "Jugador@ ";
+               SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
+               cout << jugador1->nombre;
+               SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+               cout << " (";
+               SetConsoleTextAttribute(hConsole,  FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
+               cout << oponente->ficha;
+               SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+               cout <<  ") gana." << endl;
                jugador1->ganador = true;
                oponente->ganador = false;
            }
            else if (oponente->puntos > jugador1->puntos)
            {
-               cout << "El jugador " << oponente->nombre << " (-) gana." << endl;
+               cout << "El jugador ";
+               SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE);
+               cout << oponente->nombre;
+               SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+               cout << " (";
+               SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE);
+               cout << oponente->ficha;
+               SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+               cout << ") gana." << endl;
                jugador1->ganador = false;
                oponente->ganador = true;
            }
            else
            {
+               SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN);
                cout << "Es un empate." << endl;
+               SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
                jugador1->ganador = true;
                oponente->ganador = true;
            }
@@ -128,7 +185,6 @@ void administracion::juego() {
        jugadorActual = (jugadorActual == jugador1) ? oponente : jugador1;
     }
     guardar_archivo(jugador1, oponente);
-
 }
 
 void administracion::intrucciones()
@@ -157,7 +213,7 @@ void administracion::leer_archivo()
     int ju_puntos, op_puntos;
     const int tan_col = 15;
     cout << left << setw(tan_col) << "Fecha" << setw(tan_col) << "Hora"
-         << setw(tan_col) << "Jugador" << setw(tan_col) << "Puntos "
+         << setw(tan_col) << "Jugador@" << setw(tan_col) << "Puntos "
          << setw(tan_col) << "Oponente" << setw(tan_col) << "Puntos "
          << setw(tan_col) << "Ganador" << endl;
 

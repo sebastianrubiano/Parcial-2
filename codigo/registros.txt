@@ -13,3 +13,10 @@
 2023/10/30 20:22:50 juan 8 sebastian 0 juan
 2023/10/30 20:31:06 juan 15 sebastian 0 juan
 2023/10/30 21:10:08 diana 7 paola 9 paola
+2023/11/02 22:51:07 sebastian 23 lilit 41 lilit
+2023/11/02 23:11:44 sebastian 42 taliana 22 sebastian
+2023/11/02 23:31:46 sebastian 37 estefani 27 sebastian
+2023/11/03 00:11:05 sebastian 40 helen 24 sebastian
+2023/11/05 02:58:21 1 0 2 8 2
+2023/11/05 03:03:10 1 4 2 6 2
+2023/11/05 04:09:22 l 9 k 7 l

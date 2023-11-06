@@ -59,7 +59,8 @@ OBJECTS       = debug/administracion.o \
 		debug/main.o \
 		debug/tablero.o
 
-DIST          = build-Othello-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/registros.txt administracion.h \
+DIST          = ../informe/ana \
+		registros.txt administracion.h \
 		jugador.h \
 		tablero.h ..\administracion.cpp \
 		..\jugador.cpp \

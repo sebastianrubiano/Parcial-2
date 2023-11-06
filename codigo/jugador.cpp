@@ -15,10 +15,45 @@ void Jugador::movimiento(Tablero* TAB)
     char columna;
     int fila;
     while (true) {
-        cout << "Jugador  " << nombre << "  ( " <<  ficha << " ) , ingresa tu movimiento (columna y fila) ejemplo c3: ";
+        if (ficha ==TAB->fichaA)
+        {
+        cout << "Jugador@  ";
+        SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
+        cout<< nombre;
+        SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+        cout << "  ( ";
+        SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
+        cout <<  ficha;
+        }
+        else
+        {
+        cout << "Jugador@  ";
+        SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE);
+        cout<< nombre;
+        SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+        cout << "  ( ";
+        SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE);
+        cout <<  ficha;
+        }
+        SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+        cout << " ) , ingresa tu movimiento (";
+        SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_GREEN);
+        cout<< "columna";
+        SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+        cout <<" y ";
+        SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_BLUE);
+        cout << "fila";
+        SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+        cout <<") ejemplo ";
+        SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_GREEN);
+        cout << "C";
+        SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_BLUE);
+        cout << '3';
+        SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+        cout <<": ";
         cin >> columna >> fila;
         fila--;
-        columna = toupper(columna)-'A';
+        columna = toupper(columna) - 'A';
         if (TAB->movi_valido(fila, columna, ficha)) {
             TAB->hacerMovimiento(fila,columna,ficha);
             break;
@@ -27,14 +62,5 @@ void Jugador::movimiento(Tablero* TAB)
         }
     }
 }
-/*
-void Jugador::agregar_jugador(string NOMBRE, string HORA, string FECHA, int PUNTOS, bool GANADOR)
-{
-    nombre = NOMBRE;
-    fecha = FECHA;
-    hora = HORA;
-    puntos = PUNTOS;
-    ganador = GANADOR;
-}*/
 
 

@@ -7,17 +7,17 @@ void Tablero::tablero_inicial()
             tablero[i][j] = ' ';
         }
     }
-    tablero[(tamano/2)-1][(tamano/2)-1] = tablero[tamano/2][tamano/2] = '*';   //  fichaA;         //jugador uno blanco
-    tablero[(tamano/2)-1][tamano/2] = tablero[tamano/2][(tamano/2)-1] = '-';   //  fichaB;         //jugador dos negro
+    tablero[(tamano/2)-1][(tamano/2)-1] = tablero[tamano/2][tamano/2] =  fichaA;
+    tablero[(tamano/2)-1][tamano/2] = tablero[tamano/2][(tamano/2)-1] =  fichaB;
 }
 
-Tablero::Tablero(int tam)//,char A,char B)
+Tablero::Tablero(int tam,char A,char B)
 {
      tamano = tam;
-     /*
+
     fichaA = A;
     fichaB = B;
-    */
+
 
     tablero = new char*[tamano];
     for (int i = 0; i < tamano; i++) {
@@ -28,10 +28,10 @@ Tablero::Tablero(int tam)//,char A,char B)
 
 void Tablero::Mostrar_tablero()
 {
-
     cout << "     ";
-    for (int i = 65; i <= 65+tamano-1; i++) {
-        char character = static_cast<char>(i);
+    for (int i = 65; i <= 65+tamano-1; i++)
+    {
+        char character = char(i);
         cout << character << "   ";
     }
     cout << "\n   ";
@@ -45,11 +45,11 @@ void Tablero::Mostrar_tablero()
         cout << setw(2) << i + 1 << " | ";
         for (int j = 0; j < tamano; j++)
         {
-           cout << tablero[i][j] << " | ";
+            cout << tablero[i][j] << " | ";
         }
        cout << " " << setw(2) << i + 1 << endl;
         cout << "   ";
-        for (int i = 0; i < tamano; i++) {
+        for (int k = 0; k < tamano; k++) {
            cout << "+---";
         }
         cout << "+"<< endl;
@@ -70,7 +70,7 @@ bool Tablero::movi_valido(int filas, int columnas, char jugador)
    {
        return false;
    }
-    char enemigo = (jugador == '*') ? '-' : '*'; //  fichaA) ? fichaB : fichaA;
+    char enemigo = (jugador ==  fichaA) ? fichaB : fichaA;
     int df[ ] = {-1, -1, -1, 0, 1, 1, 1, 0};
     int dc[ ] = {-1, 0, 1, 1, 1, 0, -1, -1};
 
@@ -85,7 +85,7 @@ bool Tablero::movi_valido(int filas, int columnas, char jugador)
                columna += dc[direccion];
                direccionValida = true;
            }
-           if (direccionValida && fila>= 0 && fila < tamano && columna >= 0 && columna < tamano && tablero[fila][columna] == jugador)
+           if (direccionValida == true  && fila>= 0 && fila < tamano && columna >= 0 && columna < tamano && tablero[fila][columna] == jugador)
            {
                return true;
            }
@@ -94,7 +94,7 @@ bool Tablero::movi_valido(int filas, int columnas, char jugador)
 }
 
 void Tablero::hacerMovimiento(int J_fila, int J_columna, char jugador) {
-    char oponente = (jugador == '*') ? '-' : '*';  //  fichaA) ? fichaB : fichaA;
+    char oponente = (jugador == fichaA) ? fichaB : fichaA;
     tablero[J_fila][J_columna] = jugador;
 
     int df[] = {-1, -1, -1, 0, 1, 1, 1, 0};
@@ -155,3 +155,69 @@ int Tablero::contarFichas(char jugador)
     }
     return contador;
 }
+
+void Tablero::Mostrar_tablerocolor()
+{
+    const int ASCII_A = 65;
+    const int WIDTH = 2;
+
+    SetConsoleTextAttribute(hConsole,BACKGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_GREEN);
+    cout << "     ";
+    for (int i = ASCII_A; i <= ASCII_A+tamano-1; i++)
+    {
+        char character = char(i);
+        cout << character << "   ";
+    }
+    SetConsoleTextAttribute(hConsole, BACKGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    cout<< "   " << "\n   ";
+    for (int i = 0; i < tamano; i++) {
+        cout << "+---";
+    }
+    cout << "+" << "    "<< endl;
+
+    for (int i = 0; i < tamano; i++)
+    {
+        SetConsoleTextAttribute(hConsole,BACKGROUND_RED |  FOREGROUND_INTENSITY | FOREGROUND_BLUE);
+        cout << setw(WIDTH) << i + 1;
+        SetConsoleTextAttribute(hConsole,BACKGROUND_RED |  FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
+        cout << " | ";
+        for (int j = 0; j < tamano; j++)
+        {
+               if ( tablero[i][j]== fichaA)
+               {
+                  SetConsoleTextAttribute(hConsole,BACKGROUND_RED |  FOREGROUND_INTENSITY | FOREGROUND_GREEN | FOREGROUND_BLUE);
+                      cout << tablero[i][j];
+               }
+               else
+               {
+                   SetConsoleTextAttribute(hConsole, BACKGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE);
+                   cout << tablero[i][j];
+               }
+
+               SetConsoleTextAttribute(hConsole, BACKGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+               cout << " | ";
+        }
+        SetConsoleTextAttribute(hConsole,BACKGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_BLUE);
+        cout << " " << setw(WIDTH) << i + 1;
+        SetConsoleTextAttribute(hConsole, BACKGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+        cout << endl;
+        cout << "   ";
+        for (int k = 0; k < tamano; k++) {
+               cout << "+---";
+        }
+        cout << "+" << "    "<< endl;
+
+    }
+
+    SetConsoleTextAttribute(hConsole, BACKGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_GREEN);
+    cout << "     ";
+    for (int i = ASCII_A; i <= ASCII_A+tamano-1; i++) {
+        char character = static_cast<char>(i);
+        cout << character << "   ";
+    }
+    cout << "   " << endl;
+
+    SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+}
+

@@ -1,10 +1,12 @@
 #ifndef JUGADOR_H
 #define JUGADOR_H
 #include "tablero.h"
+#include <windows.h>
 class Tablero;
 class Jugador
 {
 public:
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     string nombre;
     char ficha;
     int puntos = 2;
